@@ -1,0 +1,278 @@
+{% block content %}
+
+
+<style>
+	body {
+		font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: #1a1a1a;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+		position: relative;
+		overflow: hidden;
+	}
+	body::before {
+		content: '';
+		position: absolute;
+		top: -50%;
+		right: -50%;
+		width: 200%;
+		height: 200%;
+		background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+		background-size: 50px 50px;
+		animation: float 20s linear infinite;
+	}
+	@keyframes float {
+		0% {
+			transform: translate(0, 0);
+		}
+		100% {
+			transform: translate(50px, 50px);
+		}
+	}
+	.login-container {
+		max-width: 450px;
+		width: 100%;
+		background: #fff;
+		border-radius: 24px;
+		box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+		padding: 48px 40px;
+		position: relative;
+		z-index: 1;
+		animation: slideUp 0.6s ease-out;
+	}
+	@keyframes slideUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	.login-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+	.book-icon {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto 20px;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		border-radius: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 40px;
+		box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+	}
+	h2 {
+		color: #2d3748;
+		margin: 0 0 8px 0;
+		font-size: 2rem;
+		font-weight: 700;
+		letter-spacing: -0.5px;
+	}
+	.subtitle {
+		color: #718096;
+		font-size: 0.95rem;
+		margin: 0;
+	}
+	form {
+		margin: 0;
+	}
+	.form-group {
+		margin-bottom: 24px;
+		position: relative;
+	}
+	.form-group label {
+		display: block;
+		margin-bottom: 8px;
+		color: #4a5568;
+		font-weight: 600;
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+	form input, form select, form textarea {
+		width: 100%;
+		padding: 14px 16px;
+		margin: 0;
+		border: 2px solid #e2e8f0;
+		border-radius: 12px;
+		font-size: 1rem;
+		background: #f7fafc;
+		transition: all 0.3s ease;
+		box-sizing: border-box;
+	}
+	form input:focus, form select:focus, form textarea:focus {
+		outline: none;
+		border-color: #667eea;
+		background: #fff;
+		box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+	}
+	form ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	form ul li {
+		margin-bottom: 24px;
+	}
+	.error-message {
+		color: #e53e3e;
+		font-size: 0.85rem;
+		margin-top: 6px;
+		display: block;
+	}
+	form button {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: #fff;
+		border: none;
+		padding: 16px 24px;
+		border-radius: 12px;
+		font-size: 1.05rem;
+		font-weight: 700;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		width: 100%;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+		margin-top: 12px;
+	}
+	form button:hover {
+		box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+		transform: translateY(-2px);
+	}
+	form button:active {
+		transform: translateY(0);
+	}
+	.divider {
+		display: flex;
+		align-items: center;
+		text-align: center;
+		margin: 30px 0;
+		color: #a0aec0;
+		font-size: 0.9rem;
+	}
+	.divider::before,
+	.divider::after {
+		content: '';
+		flex: 1;
+		border-bottom: 1px solid #e2e8f0;
+	}
+	.divider span {
+		padding: 0 16px;
+		font-weight: 600;
+	}
+	.login-link {
+		text-align: center;
+		margin-top: 24px;
+		padding: 20px;
+		background: #f7fafc;
+		border-radius: 12px;
+	}
+	.login-link p {
+		margin: 0;
+		color: #4a5568;
+		font-size: 0.95rem;
+	}
+	.login-link a {
+		color: #667eea;
+		text-decoration: none;
+		font-weight: 700;
+		transition: color 0.2s ease;
+	}
+	.login-link a:hover {
+		color: #764ba2;
+		text-decoration: none;
+	}
+	.features {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 30px;
+		padding-top: 30px;
+		border-top: 1px solid #e2e8f0;
+	}
+	.feature-item {
+		text-align: center;
+		flex: 1;
+	}
+	.feature-icon {
+		font-size: 24px;
+		margin-bottom: 8px;
+	}
+	.feature-text {
+		font-size: 0.75rem;
+		color: #718096;
+		font-weight: 600;
+	}
+	@media (max-width: 768px) {
+		.login-container {
+			padding: 36px 28px;
+			border-radius: 20px;
+		}
+		h2 {
+			font-size: 1.6rem;
+		}
+		.book-icon {
+			width: 60px;
+			height: 60px;
+			font-size: 30px;
+		}
+	}
+</style>
+<div class="login-container">
+	<div class="login-header">
+		<div class="book-icon">📚</div>
+		<h2>Welcome Back</h2>
+		<p class="subtitle">Login to access your book collection</p>
+	</div>
+	
+	<form method="post">
+		{% csrf_token %}
+		
+		{% for field in form %}
+			<div class="form-group">
+				<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+				{{ field }}
+				{% if field.errors %}
+					{% for error in field.errors %}
+						<span class="error-message">{{ error }}</span>
+					{% endfor %}
+				{% endif %}
+			</div>
+		{% endfor %}
+		
+		<button type="submit">Login</button>
+	</form>
+	
+	<div class="divider">
+		<span>OR</span>
+	</div>
+	
+	<div class="login-link">
+		<p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+	</div>
+	
+	<div class="features">
+		<div class="feature-item">
+			<div class="feature-icon">🔒</div>
+			<div class="feature-text">Secure</div>
+		</div>
+		<div class="feature-item">
+			<div class="feature-icon">⚡</div>
+			<div class="feature-text">Fast</div>
+		</div>
+		<div class="feature-item">
+			<div class="feature-icon">✨</div>
+			<div class="feature-text">Easy</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
