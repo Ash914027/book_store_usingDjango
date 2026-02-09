@@ -1,0 +1,75 @@
+
+{% block title %}Your Cart{% endblock %}
+{% block content %}
+<style>
+	body {
+		font-family: 'Segoe UI', Arial, sans-serif;
+		background: #f4f6fb;
+		color: #222;
+	}
+	.cart-container {
+		max-width: 600px;
+		margin: 40px auto;
+		background: #fff;
+		border-radius: 12px;
+		box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+		padding: 32px 24px;
+	}
+	h2 {
+		color: #4f8cff;
+		margin-top: 0;
+		text-align: center;
+	}
+	.cart-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 12px 0;
+		border-bottom: 1px solid #e0e0e0;
+	}
+	.cart-item:last-child {
+		border-bottom: none;
+	}
+	.price {
+		font-weight: 600;
+		color: #388e3c;
+	}
+	.cart-total {
+		margin-top: 20px;
+		font-size: 1.1rem;
+		font-weight: 600;
+		text-align: right;
+	}
+	.checkout-btn {
+		background: #388e3c;
+		color: #fff;
+		border: none;
+		padding: 10px 24px;
+		border-radius: 6px;
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: background 0.2s;
+		margin-top: 18px;
+		display: inline-block;
+	}
+	.checkout-btn:hover {
+		background: #256029;
+	}
+</style>
+<div class="cart-container">
+	<h2>Your Cart</h2>
+	<div>
+		{% for item in cart_items %}
+			<div class="cart-item">
+				<span>{{ item.book.title }} (x{{ item.quantity }})</span>
+				<span class="price">${{ item.total_price }}</span>
+			</div>
+		{% empty %}
+			<div>Your cart is empty.</div>
+		{% endfor %}
+	</div>
+	<div class="cart-total">Total: <span class="price">${{ total_price }}</span></div>
+	<a href="/cart/checkout/" class="checkout-btn">Proceed to Checkout</a>
+</div>
+{% endblock %}
