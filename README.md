@@ -2,6 +2,14 @@
 
 A Django-based e-commerce application for online bookstore management. This platform allows users to browse books, manage their shopping cart, and make purchases.
 
+<img width="1514" height="963" alt="Screenshot 2026-03-06 012411" src="https://github.com/user-attachments/assets/84aef4ce-7a95-4da2-b967-0b9a8e7e4700" />
+<img width="1721" height="759" alt="Screenshot 2026-03-06 012427" src="https://github.com/user-attachments/assets/2ea54e2a-fc1d-4d17-aab0-077b5abe615b" />
+<img width="1199" height="701" alt="Screenshot 2026-03-06 012439" src="https://github.com/user-attachments/assets/189b5827-08fa-49e3-844e-776fba8ece4e" />
+<img width="1168" height="489" alt="Screenshot 2026-03-06 012447" src="https://github.com/user-attachments/assets/d747e085-1fb9-4d5f-a2fc-3974af6970ed" />
+
+
+
+
 ## Features
 
 - **User Authentication**: User registration, login, and profile management
